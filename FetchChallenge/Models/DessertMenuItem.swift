@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-struct DessertMenuItem: Identifiable, Decodable {
+struct MenuItem: Identifiable, Decodable {
     let title: String
     let imgUrl: String
     let id: String
@@ -21,6 +21,6 @@ struct DessertMenuItem: Identifiable, Decodable {
 }
 
 
-struct DessertResponse: Decodable {
-    let meals: [DessertMenuItem]
+struct MenuResponse: Decodable {
+    let meals: [MenuItem]
 }
