@@ -5,7 +5,7 @@ struct Recipe: Decodable {
     let id: String
     let title: String
     let imageURL: String?
-    let ingredients: [(String, String)]
+    let ingredients: [IngredientSet]
     let instructions: String
     let drinkParing: String?
     let sourceUrl: String?
@@ -126,8 +126,16 @@ struct Recipe: Decodable {
         guard listedIngedients.count == measures.count, measures.count > 0 else {
             fatalError("Error parsing ingredints list")
         }
-        self.ingredients = Array(zip(listedIngedients, measures))
+        self.ingredients = Array(zip(listedIngedients, measures)).map({ (ingredient, measure) in
+            return IngredientSet(ingredient: ingredient, measure: measure)
+        })
     }
+}
+
+struct IngredientSet: Identifiable {
+    let id: UUID = UUID()
+    let ingredient: String
+    let measure: String
 }
 
 struct RecipeResponse: Decodable {

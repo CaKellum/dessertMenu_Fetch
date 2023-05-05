@@ -5,15 +5,22 @@ struct MenuView: View {
     var body: some View {
         VStack {
             if viewModel.error == nil {
-                List(viewModel.menuItems) { item in
-                    NavigationLink {
-                        RecipeView(id: item.id)
-                    } label: {
-                        ItemView(item: item)
-                    }
-                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                if viewModel.error == nil {
+                    List(viewModel.menuItems) { item in
+                        NavigationLink {
+                            RecipeView(id: item.id)
+                        } label: {
+                            ItemView(item: item)
+                        }
+                    }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                } else {
+                    Text(verbatim: viewModel.error ?? RequestManager.defaultErrorMessage)
+                }
+
+            } else if viewModel.menuItems.isEmpty {
+                ProgressView()
             } else {
-                Text(verbatim: viewModel.error ?? RequestManager.defaultErrorMessage)
+                Text(verbatim: RequestManager.defaultErrorMessage)
             }
         }.cornerRadius(15).padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0))
     }
