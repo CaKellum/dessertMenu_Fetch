@@ -20,6 +20,10 @@ struct Request {
 
 struct RequestManager {
 
+    static let defaultErrorMessage = "Error getting object"
+    static let forbidenMessage = "Content is Forbiden"
+    static let notFoundMessage = "Object Not Found"
+
     static func makeRequest(request: Request) {
         var dataRequest = URLRequest(url: request.url)
         dataRequest.httpMethod = request.type.rawValue
@@ -27,6 +31,16 @@ struct RequestManager {
             if let handler = request.handler {
                 handler(recivedData, response, error)
             }
+        }
+        task.resume()
+    }
+
+    static func getErrorDescripton(error: Error, response: URLResponse?) -> String {
+        guard let response = response as? HTTPURLResponse else { return Self.defaultErrorMessage }
+        switch response.statusCode {
+        case 400...499: return Self.notFoundMessage
+        case 500...599: return Self.forbidenMessage
+        default: return Self.defaultErrorMessage
         }
     }
 

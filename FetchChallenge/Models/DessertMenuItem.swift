@@ -6,12 +6,7 @@ struct MenuItem: Identifiable, Decodable {
     let imgUrl: String
     let id: String
 
-    func getImage() -> UIImage? {
-        if let url = URL(string: imgUrl), let data = try? Data(contentsOf: url) {
-            return UIImage(data: data)
-        }
-        return UIImage(systemName: "birthday.cake")
-    }
+    func getImageURL() -> URL? { URL(string: imgUrl) }
 
     enum CodingKeys: String, CodingKey{
         case title = "strMeal"

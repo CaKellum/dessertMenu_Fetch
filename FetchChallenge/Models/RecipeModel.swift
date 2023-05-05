@@ -114,12 +114,14 @@ struct Recipe: Decodable {
                            strIngredient6, strIngredient7, strIngredient8, strIngredient9, strIngredient10,
                            strIngredient11, strIngredient12, strIngredient13, strIngredient14, strIngredient15,
                            strIngredient16, strIngredient17, strIngredient18, strIngredient19,
-                           strIngredient20].filter({!$0.isEmpty})
-        let measures = [strMeasure1, strMeasure2, strMeasure3, strMeasure4, strMeasure5,
+                           strIngredient20].map({$0.trimmingCharacters(in: .whitespacesAndNewlines)})
+            .filter({!$0.isEmpty})
+        let measures: [String] = [strMeasure1, strMeasure2, strMeasure3, strMeasure4, strMeasure5,
                         strMeasure6, strMeasure7, strMeasure8, strMeasure9, strMeasure10,
                         strMeasure11, strMeasure12, strMeasure13, strMeasure14, strMeasure15,
                         strMeasure16, strMeasure17, strMeasure18, strMeasure19,
-                        strMeasure20].filter({!$0.isEmpty})
+                                  strMeasure20].map({$0.trimmingCharacters(in: .whitespacesAndNewlines)})
+            .filter({!$0.isEmpty})
 
         guard listedIngedients.count == measures.count, measures.count > 0 else {
             fatalError("Error parsing ingredints list")
