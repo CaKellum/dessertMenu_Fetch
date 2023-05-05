@@ -1,7 +1,7 @@
 import Foundation
 
 struct Recipe: Decodable {
-
+    
     let id: String
     let title: String
     let imageURL: String?
