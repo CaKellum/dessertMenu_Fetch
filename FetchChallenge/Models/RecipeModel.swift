@@ -1,5 +1,6 @@
 import Foundation
 
+/// This is a model that holds the information for the recipie
 struct Recipe: Decodable {
     
     let id: String
@@ -110,16 +111,18 @@ struct Recipe: Decodable {
         let strMeasure18 = try container.decode(String.self, forKey: .strMeasure18)
         let strMeasure19 = try container.decode(String.self, forKey: .strMeasure19)
         let strMeasure20 = try container.decode(String.self, forKey: .strMeasure20)
+        // This puts the ingredents in the list and removes any blank ones
         let listedIngedients = [strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5,
-                           strIngredient6, strIngredient7, strIngredient8, strIngredient9, strIngredient10,
-                           strIngredient11, strIngredient12, strIngredient13, strIngredient14, strIngredient15,
-                           strIngredient16, strIngredient17, strIngredient18, strIngredient19,
-                           strIngredient20].map({$0.trimmingCharacters(in: .whitespacesAndNewlines)})
+                                strIngredient6, strIngredient7, strIngredient8, strIngredient9, strIngredient10,
+                                strIngredient11, strIngredient12, strIngredient13, strIngredient14, strIngredient15,
+                                strIngredient16, strIngredient17, strIngredient18, strIngredient19,
+                                strIngredient20].map({$0.trimmingCharacters(in: .whitespacesAndNewlines)})
             .filter({!$0.isEmpty})
+        // This put the measurements in the list and removes the blank ones
         let measures: [String] = [strMeasure1, strMeasure2, strMeasure3, strMeasure4, strMeasure5,
-                        strMeasure6, strMeasure7, strMeasure8, strMeasure9, strMeasure10,
-                        strMeasure11, strMeasure12, strMeasure13, strMeasure14, strMeasure15,
-                        strMeasure16, strMeasure17, strMeasure18, strMeasure19,
+                                  strMeasure6, strMeasure7, strMeasure8, strMeasure9, strMeasure10,
+                                  strMeasure11, strMeasure12, strMeasure13, strMeasure14, strMeasure15,
+                                  strMeasure16, strMeasure17, strMeasure18, strMeasure19,
                                   strMeasure20].map({$0.trimmingCharacters(in: .whitespacesAndNewlines)})
             .filter({!$0.isEmpty})
 
@@ -132,12 +135,14 @@ struct Recipe: Decodable {
     }
 }
 
+/// This is a easily listable data structure
 struct IngredientSet: Identifiable {
     let id: UUID = UUID()
     let ingredient: String
     let measure: String
 }
 
+/// This deals with the wrapper around the data
 struct RecipeResponse: Decodable {
     let meals: [Recipe]
 }
