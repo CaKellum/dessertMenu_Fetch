@@ -24,6 +24,7 @@
 		83F926C92A05EFF200CFBBFC /* RecipeCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F926C82A05EFF200CFBBFC /* RecipeCache.swift */; };
 		83F926CB2A05F01100CFBBFC /* MenuItemCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F926CA2A05F01100CFBBFC /* MenuItemCache.swift */; };
 		83F926CD2A05F1D800CFBBFC /* ModelCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F926CC2A05F1D800CFBBFC /* ModelCache.swift */; };
+		83F926CF2A060D2100CFBBFC /* LoadingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F926CE2A060D2100CFBBFC /* LoadingImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		83F926C82A05EFF200CFBBFC /* RecipeCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCache.swift; sourceTree = "<group>"; };
 		83F926CA2A05F01100CFBBFC /* MenuItemCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCache.swift; sourceTree = "<group>"; };
 		83F926CC2A05F1D800CFBBFC /* ModelCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCache.swift; sourceTree = "<group>"; };
+		83F926CE2A060D2100CFBBFC /* LoadingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				836A52CD2A04862900BE286F /* MenuView.swift */,
 				836A52D52A04928F00BE286F /* ItemView.swift */,
 				83F926C52A05ED2F00CFBBFC /* RecipeNavigation.swift */,
+				83F926CE2A060D2100CFBBFC /* LoadingImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				83F926C92A05EFF200CFBBFC /* RecipeCache.swift in Sources */,
 				836A52CE2A04862900BE286F /* MenuView.swift in Sources */,
 				836A52932A033D0B00BE286F /* ContentView.swift in Sources */,
+				83F926CF2A060D2100CFBBFC /* LoadingImageView.swift in Sources */,
 				836A52912A033D0B00BE286F /* FetchChallengeApp.swift in Sources */,
 				836A52BE2A033E6700BE286F /* RequestHandler.swift in Sources */,
 			);

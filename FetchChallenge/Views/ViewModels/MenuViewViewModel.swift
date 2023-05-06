@@ -3,6 +3,9 @@ import Combine
 
 class MenuViewViewModel: ObservableObject {
     private static let dessetMenuItems = "https://themealdb.com/api/json/v1/1/filter.php?c=Dessert"
+
+    static let menuTitle = "Dessert Menu"
+
     @Published var menuItems: [MenuItem] = []
     @Published var error: String? = nil
 

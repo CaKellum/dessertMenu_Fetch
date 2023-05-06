@@ -7,25 +7,38 @@ struct RecipeView: View {
     var body: some View {
         VStack {
             if viewModel.error == nil {
-                Text(verbatim: viewModel.recipe?.title ?? "")
-                List(viewModel.recipe?.ingredients ?? []) { ingredientSet in
-                    HStack {
-                        Text(verbatim: ingredientSet.ingredient)
-                        Text(verbatim: ingredientSet.measure)
-                    }
+                HStack {
+                    LoadingImageView(frame: (50, 50), cornerRadius: 15,
+                                     url: viewModel.recipe?.getImageURL())
+                    Text(verbatim: viewModel.recipe?.title ?? "").font(.title)
                 }
-                Text(verbatim: viewModel.recipe?.instructions ?? "")
-                if let urlString = viewModel.recipe?.ytUrl, let url = URL(string: urlString) {
-                    Link("\(viewModel.recipe?.title ?? "") video", destination: url)
-                }
-                if let sourceUrlString = viewModel.recipe?.sourceUrl, let url = URL(string: sourceUrlString) {
-                    Link("\(viewModel.recipe?.title ?? "") source", destination: url)
-                }
-            } else if viewModel.recipe == nil {
-                ProgressView()
-            } else {
-                Text(verbatim: RequestManager.defaultErrorMessage)
             }
+            List {
+                if viewModel.error == nil {
+                    Text(ViewModel.ingredientsHeading).font(.headline)
+                    ForEach(viewModel.recipe?.ingredients ?? []) { ingredientSet in
+                        HStack {
+                            Text(verbatim: ingredientSet.ingredient)
+                            Spacer()
+                            Text(verbatim: ingredientSet.measure)
+                        }
+                    }
+
+                    (Text(ViewModel.instructionsPrefix).bold().font(.headline) +
+                     Text(viewModel.recipe?.instructions ?? ""))
+                    .padding(EdgeInsets(top: 5, leading: 5, bottom: 10, trailing: 5)).scrollDisabled(false)
+                    if let ytUrl = viewModel.ytUrl {
+                        Text(ytUrl).padding(viewModel.urlPadding)
+                    }
+                    if let sourecUrl = viewModel.sourceUrl {
+                        Text(sourecUrl).padding(viewModel.urlPadding)
+                    }
+                } else if viewModel.recipe == nil {
+                    ProgressView()
+                } else {
+                    Text(verbatim: RequestManager.defaultErrorMessage)
+                }
+            }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
         }
     }
 

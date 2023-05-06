@@ -133,6 +133,11 @@ struct Recipe: Decodable {
             return IngredientSet(ingredient: ingredient, measure: measure)
         })
     }
+
+    func getImageURL() -> URL? {
+        guard let imageURL = imageURL else { return nil }
+        return URL(string: imageURL)
+    }
 }
 
 /// This is a easily listable data structure
